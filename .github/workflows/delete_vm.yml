@@ -24,3 +24,24 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: set project
+        run: |
+         gcloud config configurations list
+         gcloud config set project flash-app-319312
+         
+      - name: delte VM instances
+        run: |
+          gcloud compute  instances delete postgres-prod
+          gcloud compute  instances delete postgres-prod1
+          gcloud compute  instances delete postgres-prod2
+          gcloud compute  instances delete instance-sachin
+          
