@@ -41,6 +41,7 @@ jobs:
         continue-on-error: true
         run: |
           gcloud compute  instances delete postgres-prod --zone=us-west1-b --quiet
+          continue-on-error: true
           gcloud compute  instances delete postgres-prod1 --zone=us-west1-b --quiet
           gcloud compute  instances delete postgres-prod2 --zone=us-west1-b --quiet
           gcloud compute  instances delete instance-sachin --zone=us-west4-b --quiet
