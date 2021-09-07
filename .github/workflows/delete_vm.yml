@@ -26,7 +26,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@master
         with:
@@ -40,6 +39,7 @@ jobs:
          gcloud config set project flash-app-319312
          
       - name: delte VM instances
+        continue-on-error: true
         run: |
           gcloud compute  instances delete postgres-prod --zone=us-west1-b --quiet
           gcloud compute  instances delete postgres-prod1 --zone=us-west1-b --quiet
